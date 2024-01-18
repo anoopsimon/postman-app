@@ -62,7 +62,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
     responseArea.value = 'Sending request...';
-    console.log('test log' + JSON.stringify(headers))
+    console.log('Headers :' + JSON.stringify(headers))
+    console.log('Body :' + JSON.stringify(body))
 
     fetch(url, {
         method: method,
