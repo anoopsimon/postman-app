@@ -1,15 +1,25 @@
 body {
   font-family: 'Open Sans', 'Segoe UI', Arial, sans-serif;
-  background-color: #f0f2f5; /* Light gray background */
+  background-color: #f0f2f5;
   margin: 0;
-  padding: 20px;
-  color: #5b5b5b; /* Adjust text color */
+  padding: 0;
+  display: flex;
+  height: 100vh; /* Full viewport height */
+  color: #5b5b5b;
 }
+
 
 #request-controls {
   display: flex;
+  justify-content: flex-start;
+  align-items: center;
   margin-bottom: 10px;
-  align-items: center; /* Align items vertically */
+}
+
+#request-controls select,
+#request-controls input[type="text"],
+#request-controls button {
+  margin-right: 5px;
 }
 
 #method {
@@ -69,6 +79,75 @@ body {
   color: #5b5b5b;
   font-family: 'Consolas', 'Monaco', monospace; /* Use a monospace font for the response */
 }
+
+#container {
+  display: flex;
+}
+
+#history-panel {
+  width: 250px; /* Fixed width for the history panel */
+  height: 100vh; /* Full viewport height */
+  overflow-y: auto; /* Scrollable */
+  border-right: 1px solid #d1d5da;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+#request-panel {
+  flex-grow: 1; /* Takes the remaining space */
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* Full viewport height */
+  overflow-y: auto; /* Scrollable */
+}
+
+#history-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#history-list li {
+  cursor: pointer;
+  padding: 10px;
+  border-bottom: 1px solid #e1e1e1;
+  background-color: #f9f9f9;
+}
+
+#history-list li:hover {
+  background-color: #e2e2e2;
+}
+
+
+#request-tabs {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+}
+
+.tablink {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+.tablink:hover {
+  background-color: #ddd;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+
 
 /* Optional: Import the Open Sans font from Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap');

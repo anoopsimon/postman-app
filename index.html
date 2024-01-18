@@ -1,27 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Node Postman Clone</title>
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Node Postman Clone</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div id="request-controls">
-    <select id="method">
-      <option value="GET">GET</option>
-      <option value="POST">POST</option>
-      <!-- Add other methods as needed -->
-    </select>
-    <input type="text" id="url" placeholder="Enter URL" required>
-    <button id="send">Send</button>
-  </div>
+    <div id="history-panel">
+        <h2>History</h2>
+        <ul id="history-list">
+            <!-- History items will be dynamically added here -->
+        </ul>
+    </div>
 
-  <textarea id="request-body" placeholder="Enter request body"></textarea>
+    <div id="request-panel">
+        <div id="request-controls">
+            <select id="method">
+                <option value="GET">GET</option>
+                <option value="POST">POST</option>
+                <!-- Add other methods as needed -->
+            </select>
+            <input type="text" id="url" placeholder="Enter URL" required>
+            <button id="send">Send</button>
+        </div>
+        
+        <!-- Tab links -->
+        <div id="request-tabs">
+            <button class="tablink" onclick="openTab(event, 'bodyTab')">Body</button>
+            <button class="tablink" onclick="openTab(event, 'headersTab')">Headers</button>
+            <button class="tablink" onclick="openTab(event, 'preReqScriptTab')">Pre-request Script</button>
+            <!-- Add more tabs if needed -->
+        </div>
+        
+        <!-- Tab content -->
+        <div id="bodyTab" class="tabcontent">
+            <textarea id="request-body" placeholder="Enter request body"></textarea>
+        </div>
+        <div id="headersTab" class="tabcontent">
+            <!-- Content for headers will go here -->
+        </div>
+        <div id="preReqScriptTab" class="tabcontent">
+            <!-- Content for pre-request script will go here -->
+        </div>
+        
+        <div id="response">
+            <h3>Response</h3>
+            <textarea id="response-body" readonly></textarea>
+        </div>
+    </div>
 
-  <textarea id="response" placeholder="Response" readonly></textarea>
-
-  <!-- Link to your JavaScript file -->
-  <script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
