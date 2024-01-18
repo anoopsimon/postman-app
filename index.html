@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Node Postman Clone</title>
+    <title>REST Client</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -12,7 +12,6 @@
         <button id="clear-history">Clear History</button>
 
         <ul id="history-list">
-            <!-- History items will be dynamically added here -->
         </ul>
     </div>
 
@@ -21,7 +20,9 @@
             <select id="method">
                 <option value="GET">GET</option>
                 <option value="POST">POST</option>
-                <!-- Add other methods as needed -->
+                <option value="PUT">PUT</option>
+                <option value="DELETE">DELETE</option>
+                <option value="PATCH">PATCH</option>
             </select>
             <input type="text" id="url" placeholder="Enter URL" required>
             <button id="send">Send</button>

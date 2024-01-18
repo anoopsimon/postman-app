@@ -68,7 +68,8 @@ document.addEventListener('DOMContentLoaded', function() {
     fetch(url, {
         method: method,
         headers: headers,
-        body: method === 'GET' ? null : JSON.stringify(body)
+        //body: method === 'GET' ? null : JSON.stringify(body) : to be tested
+        body: method === 'GET' ? null : body
     })
     .then(response => {
         if (!response.ok) {
