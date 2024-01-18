@@ -2,21 +2,21 @@ const express = require('express');
 const axios = require('axios');
 const bodyParser = require('body-parser');
 
-const app = express();
+const expressApp = express();
 const port = 3000;
 
 // Middleware to parse JSON bodies
-app.use(bodyParser.json());
+expressApp.use(bodyParser.json());
 
-app.get('/', (req, res) => {
+expressApp.get('/', (req, res) => {
   res.sendFile(__dirname +'/index.html');
 });
 
-app.use(express.static('public'));
+expressApp.use(express.static('public'));
 
 
 // Endpoint to handle the request
-app.post('/send-request', async (req, res) => {
+expressApp.post('/send-request', async (req, res) => {
   try {
     // Destructure the data from the request body
     const { method, url, headers, body } = req.body;
@@ -41,6 +41,8 @@ app.post('/send-request', async (req, res) => {
   }
 });
 
-app.listen(port, () => {
+expressApp.listen(port, () => {
   console.log(`Server listening at http://localhost:${port}`);
 });
+
+module.exports = expressApp; 
