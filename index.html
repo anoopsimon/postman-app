@@ -9,6 +9,8 @@
 <body>
     <div id="history-panel">
         <h2>History</h2>
+        <button id="clear-history">Clear History</button>
+
         <ul id="history-list">
             <!-- History items will be dynamically added here -->
         </ul>
@@ -38,8 +40,14 @@
             <textarea id="request-body" placeholder="Enter request body"></textarea>
         </div>
         <div id="headersTab" class="tabcontent">
-            <!-- Content for headers will go here -->
-        </div>
+          <div id="header-inputs">
+              <div class="header-pair">
+                  <input type="text" class="header-key" placeholder="Header Name">
+                  <input type="text" class="header-value" placeholder="Header Value">
+              </div>
+          </div>
+          <button id="add-header">Add Header</button>
+      </div>
         <div id="preReqScriptTab" class="tabcontent">
             <!-- Content for pre-request script will go here -->
         </div>

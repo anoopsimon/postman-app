@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "electron .",
+    "start": "set ELECTRON_ENABLE_LOGGING=1 && electron .",
     "package": "electron-packager . --overwrite --platform=win32 --arch=x64 --icon=assets/icon.icns --prune=true --out=release-builds"
   },
   "author": "",

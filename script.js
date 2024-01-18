@@ -22,6 +22,11 @@ document.addEventListener('DOMContentLoaded', function() {
   // Set the default tab open
   openTab(new Event('click'), 'bodyTab');
 
+  const clearHistoryButton = document.getElementById('clear-history');
+  clearHistoryButton.addEventListener('click', function() {
+      historyList.innerHTML = '';
+  });
+
   const sendButton = document.getElementById('send');
   const methodSelect = document.getElementById('method');
   const urlInput = document.getElementById('url');
@@ -29,16 +34,39 @@ document.addEventListener('DOMContentLoaded', function() {
   const responseArea = document.getElementById('response-body');
   const historyList = document.getElementById('history-list');
 
+  const addHeaderButton = document.getElementById('add-header');
+  const headerInputsContainer = document.getElementById('header-inputs');
+
+  addHeaderButton.addEventListener('click', function() {
+      const newHeaderPair = document.createElement('div');
+      newHeaderPair.className = 'header-pair';
+      newHeaderPair.innerHTML = `
+          <input type="text" class="header-key" placeholder="Header Name">
+          <input type="text" class="header-value" placeholder="Header Value">
+      `;
+      headerInputsContainer.appendChild(newHeaderPair);
+  });
+
+
   sendButton.addEventListener('click', function() {
     const method = methodSelect.value;
     const url = urlInput.value;
     const body = requestBody.value;
 
+    const headers = {};
+    document.querySelectorAll('.header-pair').forEach(pair => {
+        const key = pair.querySelector('.header-key').value;
+        const value = pair.querySelector('.header-value').value;
+        if (key) headers[key] = value;
+    });
+
+
     responseArea.value = 'Sending request...';
+    console.log('test log' + JSON.stringify(headers))
 
     fetch(url, {
         method: method,
-        headers: { 'Content-Type': 'application/json' },
+        headers: headers,
         body: method === 'GET' ? null : JSON.stringify(body)
     })
     .then(response => {
