@@ -26,7 +26,10 @@
             </select>
             <input type="text" id="url" placeholder="Enter URL" required>
             <button id="send">Send</button>
-        </div>
+            <button id="save-request">Save</button>
+
+    
+</div>
         
         <!-- Tab links -->
         <div id="request-tabs">
@@ -56,6 +59,15 @@
         <div id="response">
             <h3>Response</h3>
             <textarea id="response-body" readonly></textarea>
+        </div>
+    </div>
+    <div id="save-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closePopup()">&times;</span>
+            <h2>Save Request</h2>
+            <input type="text" id="save-name" placeholder="Enter name for the request">
+            <button id="confirm-save">Save</button>
+            <button onclick="closePopup()">Cancel</button>
         </div>
     </div>
 
