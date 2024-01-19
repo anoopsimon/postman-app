@@ -4,14 +4,32 @@ body {
   margin: 0;
   padding: 0;
   display: flex;
-  height: 100vh; /* Full viewport height */
-  color: #5b5b5b;
+  height: 100vh;
+  color: #333;
 }
 
+#container {
+  display: flex;
+  height: 100%;
+}
+
+#history-panel {
+  width: 250px;
+  background-color: #fff;
+  border-right: 1px solid #d1d5da;
+  overflow-y: auto;
+  padding: 10px;
+}
+
+#request-panel {
+  flex-grow: 1;
+  padding: 20px;
+  background-color: #fff;
+  overflow-y: auto;
+}
 
 #request-controls {
   display: flex;
-  justify-content: flex-start;
   align-items: center;
   margin-bottom: 10px;
 }
@@ -20,92 +38,111 @@ body {
 #request-controls input[type="text"],
 #request-controls button {
   margin-right: 5px;
+  padding: 8px;
+  border: 1px solid #d1d5da;
+  border-radius: 4px;
+}
+
+
+#url {
+  flex: 1; /* Grow to fill available space */
+  padding: 8px;
+  border: 1px solid #d1d5da;
+  border-radius: 4px;
 }
 
 #method {
-  flex: 0 0 auto;
-  margin-right: 10px;
-  height: 38px; /* Match height with URL input and send button */
-  border: 1px solid #d1d5da; /* Light border */
-  background-color: #fff; /* White background */
-  border-radius: 4px;
-  padding: 0 10px; /* Padding on the sides */
-}
-
-#url {
-  flex: 1;
-  margin-right: 10px;
-  height: 38px;
-  border: 1px solid #d1d5da;
-  background-color: #fff;
-  border-radius: 4px;
-  padding: 0 10px;
+  flex: 0 0 auto; 
 }
 
 #send {
-  flex: 0 0 auto;
-  height: 38px;
-  background-color: #007bff; /* Blue background */
+  background-color: #007bff;
   color: white;
   border: none;
   border-radius: 4px;
-  padding: 0 20px;
   cursor: pointer;
-  font-weight: bold; /* Make the button text bold */
+  font-weight: bold;
+  flex: 0 0 auto;
 }
 
 #send:hover {
-  background-color: #0056b3; /* Darker blue on hover */
+  background-color: #0056b3;
 }
 
 #request-body, #response-body {
   width: 100%;
-  margin-top: 10px;
   padding: 10px;
-  box-sizing: border-box;
+  margin-top: 10px;
+  border: 1px solid #ccc;
   border-radius: 4px;
-  border: 1px solid #d1d5da;
   min-height: 150px;
   resize: vertical;
-  background-color: #fff; /* White background */
-}
-
-#request-body {
-  margin-bottom: 10px;
 }
 
 #response {
-  background-color: #e2e4e6; /* Slightly different background for contrast */
-  color: #5b5b5b;
-  font-family: 'Consolas', 'Monaco', monospace; /* Use a monospace font for the response */
+  font-family: 'Consolas', 'Monaco', monospace;
 }
 
-#container {
+#request-tabs {
+  overflow: hidden;
+  background-color: #f1f1f1;
+}
+
+.tablink {
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 10px 15px;
+  transition: 0.3s;
+  font-size: 16px;
+  background-color: inherit;
+}
+
+.tablink.active, .tablink:hover {
+  background-color: #ddd;
+}
+
+.tabcontent {
+  display: none;
+  padding: 10px;
+  border-top: none;
+  height: 300px; /* Fixed height for the tab content */
+  overflow-y: auto; /* Make it scrollable if content overflows */
+}
+
+.tabcontent.active {
+  display: block;
+}
+
+.header-pair {
   display: flex;
+  margin-bottom: 5px;
 }
 
-#history-panel {
-  width: 250px; /* Fixed width for the history panel */
-  height: 100vh; /* Full viewport height */
-  overflow-y: auto; /* Scrollable */
-  border-right: 1px solid #d1d5da;
-  padding: 20px;
-  box-sizing: border-box;
+.header-pair input {
+  flex-grow: 1;
+  margin-right: 5px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 
-#request-panel {
-  flex-grow: 1; /* Takes the remaining space */
-  display: flex;
-  flex-direction: column;
-  height: 100vh; /* Full viewport height */
-  overflow-y: auto; /* Scrollable */
+#add-header, #clear-history {
+  padding: 10px 15px;
+  background-color: #007bff; /* Blue background */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-bottom: 10px;
 }
 
-#history-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+#add-header:hover, #clear-history:hover {
+  background-color: #0056b3; /* Darker blue on hover */
 }
+
 
 #history-list li {
   cursor: pointer;
@@ -118,47 +155,13 @@ body {
   background-color: #e2e2e2;
 }
 
+/* Responsive Design */
+@media (max-width: 768px) {
+  #container {
+    flex-direction: column;
+  }
 
-#request-tabs {
-  overflow: hidden;
-  border: 1px solid #ccc;
-  background-color: #f1f1f1;
+  #history-panel, #request-panel {
+    width: 100%;
+  }
 }
-
-.tablink {
-  background-color: inherit;
-  float: left;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  padding: 14px 16px;
-  transition: 0.3s;
-  font-size: 17px;
-}
-
-.tablink:hover {
-  background-color: #ddd;
-}
-
-/* Style the tab content */
-.tabcontent {
-  display: none;
-  padding: 6px 12px;
-  border: 1px solid #ccc;
-  border-top: none;
-}
-
-
-.header-pair {
-  display: flex;
-  margin-bottom: 5px;
-}
-
-.header-pair input {
-  margin-right: 5px;
-  flex-grow: 1;
-}
-
-
-/* Optional: Import the Open Sans font from Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap');
